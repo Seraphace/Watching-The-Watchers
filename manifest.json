@@ -1,0 +1,48 @@
+{
+  "name": "Watching the Watchers", 
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "A dynamic way to collect meta-data from all the pages you visit online.",
+  "homepage_url": "https://juniormentorship.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'; connect-src 'self' wss://*.firebaseio.com;",
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "js/firebase/firebase-app.js",
+      "js/firebase/firebase-auth.js",
+      "js/firebase/firebase-database.js",
+      "js/firebase/firebase-firestore.js",
+      "src/bg/background.js",
+      "/js/trackers.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "cookies",
+    "history",
+    "idle",
+    "management",
+    "tabs",
+    "geolocation",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "<all_urls>",
+    "storage"
+  ],
+  "content_scripts": [{
+    "matches": [
+      "https://*/*",
+      "http://*/*"
+    ],
+    "js": [
+      "src/inject/inject.js"
+    ]
+  }]
+}
